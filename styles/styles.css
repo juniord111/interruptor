@@ -1,0 +1,196 @@
+/* Contenedor principal */
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    background-image: url('../images/bg-top.svg'), url('../images/bg-bottom.svg');
+    background-position: top right, bottom left;
+    background-repeat: no-repeat;
+
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 70%;
+    height: 90vh;
+    margin-bottom: 100px;
+}
+.container h1{
+    margin-top: 50px;
+}
+/* Toggle */
+.toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.toggle-input {
+    display: none;
+}
+
+.toggle-label {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background: linear-gradient(to right, hsl(236, 72%, 79%), hsl(237, 63%, 64%));
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+}
+.toggle-label:hover{
+    background-color: hsl(236, 72%, 79%);
+}
+.toggle-label::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    right: 3px; 
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+
+
+
+.toggle-input:not(:checked) + .toggle-label::after {
+    transform: translateX(-30px); /* Mover hacia la izquierda */
+}
+
+
+.cards {
+    display: flex;
+    gap: 0px;
+}
+
+.card {
+    padding: 20px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    height: 400px;
+    box-shadow: 0px 0px 3px rgb(184, 180, 180);
+    margin-top:25px;
+    border: none;
+    background-color: white;
+}
+
+.professional{
+    background: linear-gradient(to right, hsl(236, 72%, 79%), hsl(237, 63%, 64%));
+    height: 450px;
+    margin-top: 0;
+    color: white;
+    
+}
+.professional .text{
+    color: white;
+}
+
+.card h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+.card p{
+    margin-bottom: 10px;
+}
+.text{
+    font-size:5vh;
+    padding-bottom: 10px;
+}
+button{
+    padding: 15px;
+    width: 300px;
+    border-radius: 5%;
+    margin-top: 30px;
+    border: none;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    background:hsl(237, 63%, 64%) ;
+
+}
+ button:hover{
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+
+.professional button{
+    margin-top: 55px;
+    background-color: white ;
+}
+
+.professional button:hover{
+    background:linear-gradient(to right, hsl(236, 72%, 79%), hsl(237, 63%, 64%)) ;
+    border: 1px solid white;
+    color:white;
+}
+.basic .text::after {
+    content: "$19.99"; 
+    font-size: 1.5em;
+    font-weight: bold;
+    color: black;
+    display: block;
+    margin-top: 10px;
+}
+.professional .text::after{
+    content: '$24.99';
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    display: block;
+    margin-top: 10px;
+}
+.master .text::after{
+    content: '$39.99';
+    font-size: 1.5em;
+    font-weight: bold;
+    color: black;
+    display: block;
+    margin-top: 10px;
+    
+}
+
+/* Cambiar precios dinámicamente con :has() */
+main:has(.toggle-input:not(:checked)) .basic .text::after {
+    content: "$199.99"; /* Precios más bajos */
+}
+
+main:has(.toggle-input:not(:checked))  .professional .text::after {
+    content: "$249.99";
+}
+
+main:has(.toggle-input:not(:checked)) .master .text::after {
+    content: "$399.99";
+}
+@media(max-width:780px){
+    body {
+        background-image: url('../images/bg-top.svg');
+        background-position: top right;
+        background-size: 50%;
+    }
+.cards{
+    flex-direction:column;
+    
+}
+.professional{
+    height: 400px;
+    
+}
+.professional button{
+    margin-top: 30px;
+    background-color: white ;
+}
+
+}
